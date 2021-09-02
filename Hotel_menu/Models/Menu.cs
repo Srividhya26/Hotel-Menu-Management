@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -18,5 +19,6 @@ namespace Hotel_menu.Models
         public string Photo { get; set; }
         [Required(ErrorMessage ="Please enter the category")]
         public string Category { get; set; }
+        public double Price { get; set; }
     }
 }

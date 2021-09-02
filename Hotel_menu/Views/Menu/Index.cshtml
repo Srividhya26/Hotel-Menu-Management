@@ -7,10 +7,10 @@
 
 <div class="row">
     <div class="col-10">
-        <h4> Menu Items </h4>
+        <h4 class="text=center"> Menu Items </h4>
     </div>
     <div class="col-2">
-        <a asp-controller="Menu" asp-action="Create" class="btn btn-primary"> Add Employee </a>
+        <a asp-controller="Menu" asp-action="Create" class="btn btn-primary"> Add New Item </a>
     </div>
 </div>
 
@@ -30,8 +30,10 @@
             <div class="card-footer text-center">
                 <a asp-controller="Menu" asp-action="Details" asp-route-id="@menu.Id"
                    class="btn btn-primary m-1">View</a>
-                <a href="#" class="btn btn-primary m-1">Edit</a>
-                <a href="#" class="btn btn-danger m-1">Delete</a>
+                <a asp-controller="Menu" asp-action="Update" asp-route-id="@menu.Id"
+                   class="btn btn-primary m-1"> Edit </a>
+                <a class="btn btn-primary m-1" asp-action="Delete" asp-route-id="@menu.Id" 
+                   onclick="return confirm('Are you sure to delete the customer')"> Delete </a>
             </div>
         </div>
     }

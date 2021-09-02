@@ -2,8 +2,7 @@
 
 @{
     ViewData["Title"] = "Details";
-    var photoPath = "~/images/" + (Model.Photo ?? "noimage.jpg");
-
+    var photoPath = ("~/images/" + (Model.Photo ?? "noimage.jpg"));
 }
 
 
@@ -15,15 +14,19 @@
             </div>
 
             <div class="card-body text-center">
-                <img class="card-img-top" src="@photoPath" />
+                <img class="card-img-top imageThumbnail " src="@photoPath" asp-append-version="true" />
 
                 <h4> Dish Name : @Model.DishName </h4>
                 <h4> Category : @Model.Category </h4>
+                <h4> Price : @Model.Price  </h4>
                 <h4> Description : @Model.Description </h4>
             </div>
 
             <div class="card-footer">
-
+                <a asp-controller="Menu" asp-action="Index" class="btn btn-primary"> Back </a>
+                <a asp-controller="Menu" asp-action="Update" class="btn btn-primary" asp-route-id="@Model.Id"> Edit </a>
+                <a class="btn btn-primary m-1" asp-action="Delete" asp-route-id="@Model.Id"
+                   onclick="return confirm('Are you sure to delete the customer')"> Delete </a>
             </div>
         </div>
     </div>

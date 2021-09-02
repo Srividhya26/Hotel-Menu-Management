@@ -55,20 +55,14 @@ namespace Hotel_menu.Controllers
         {
             if(ModelState.IsValid)
             {
-                string fileName = null;
-                if(create.Photo != null)
-                {
-                    string uploadPhoto = Path.Combine(_hosting.WebRootPath, "images");
-                    fileName = Guid.NewGuid().ToString() + "_" + create.Photo.FileName;
-                    string filePath = Path.Combine(uploadPhoto, fileName);
-                    create.Photo.CopyTo(new FileStream(filePath, FileMode.Create));
-                }
+                string fileName = UploadedFile(create);
 
                 Menu newMenu = new Menu
                 {
                     DishName = create.DishName,
                     Category = create.Category,
                     Description = create.Description,
+                    Price = create.Price,
                     Photo = fileName
                 };
 
@@ -79,7 +73,73 @@ namespace Hotel_menu.Controllers
 
             return View();
         }
+
+        public IActionResult Update(int id)
+        {
+            Menu menu = _menu.Get(id);
+            UpdateViewModel update = new UpdateViewModel
+            {
+                Id = menu.Id,
+                DishName = menu.DishName,
+                Category = menu.Category,
+                Description = menu.Description,
+                Price = menu.Price,
+                ExistingPhotoPath = menu.Photo
+            };
+            return View(update);
+        }
+
+        [HttpPost]
+        public IActionResult Update(UpdateViewModel edit)
+        {
+            if (ModelState.IsValid)
+            {
+                Menu menu = _menu.Get(edit.Id);
+                menu.DishName = edit.DishName;
+                menu.Category = edit.Category;
+                menu.Description = edit.Description;
+                menu.Price = edit.Price;
+                if(edit.Photo != null)
+                {
+                    menu.Photo = UploadedFile(edit);
+                }
+               
+                _menu.Update(menu);
+                _work.save();
+                return RedirectToAction("Index");
+            }
+
+            return View();
+        }
+
+        private string UploadedFile(CreateViewModel edit)
+        {
+            string fileName = null;
+            if (edit.Photo != null)
+            {
+                string uploadPhoto = Path.Combine(_hosting.WebRootPath, "images");
+                fileName = Guid.NewGuid().ToString() + "_" + edit.Photo.FileName;
+                string filePath = Path.Combine(uploadPhoto, fileName);
+                edit.Photo.CopyTo(new FileStream(filePath, FileMode.Create));
+            }
+
+            return fileName;
+        }
+
+        public IActionResult Delete(int id)
+        {
+            var item = _work.menus.Get(id);
+
+            if(item == null)
+            {
+                return NotFound();
+            }
+
+            _work.menus.Remove(item);
+            _work.save();
+
+            return RedirectToAction("Index");
+        }
     }
 }
 
-//new { id = newMenu.Id }

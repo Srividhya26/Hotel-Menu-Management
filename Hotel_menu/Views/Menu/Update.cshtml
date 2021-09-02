@@ -1,16 +1,19 @@
-﻿@model Hotel_menu.ViewModel.CreateViewModel
+﻿@model Hotel_menu.ViewModel.UpdateViewModel
 
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Update";
+    var photoPath = ("~/images/" + (Model.ExistingPhotoPath ?? "noimage.jpg"));
 }
 
-<form enctype="multipart/form-data" method="post" asp-action="Create">
+<form enctype="multipart/form-data" method="post" asp-action="Update">
+
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="form-group row">
-        <h3> Add Item </h3>
+        <h3> Update Item </h3>
     </div>
-
+    <input hidden asp-for="Id" />
+    <input hidden asp-for="ExistingPhotoPath" />
     <div class="row">
         <div class="col-12">
             <div class="form-group row">
@@ -36,7 +39,7 @@
                     <label asp-for="Description"></label>
                 </div>
                 <div class="col-6">
-                    <input type="text" asp-for="Description" placeholder="Description about the item" />
+                    <input type="text" asp-for="Description" placeholder="Description" />
                     <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
             </div>
@@ -54,14 +57,14 @@
                 <div class="col-sm-10">
                     <div class="custom-file">
                         <input asp-for="Photo" class="form-control custom-file-input" />
-                        <label class="custom-file-label"> Choose File </label>
+                        <label class="custom-file-label"> Click here to change Photo </label>
                     </div>
                 </div>
             </div>
-
+            <img src="@photoPath" asp-append-version="true" />
             <div class="form-group row">
                 <div class="col-4">
-                    <button type="submit" class="btn btn-info w-50"> Add </button>
+                    <button type="submit" class="btn btn-info w-50"> Update </button>
                 </div>
                 <div class="col-4">
                     <a asp-action="Index" class="btn btn-danger w-50"> Back </a>

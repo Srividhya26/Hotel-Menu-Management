@@ -11,6 +11,7 @@ namespace Hotel_menu.ViewModel
         public string Category { get; set; }
         public string  Description { get; set; }
         public string Photo { get; set; }
+        public double Price { get; set; }
     }
 }
 
