@@ -1,0 +1,31 @@
+﻿@model Menu
+
+
+@{
+    ViewData["Title"] = "Details";
+    var photoPath = "~/images/" + (Model.Photo ?? "noimage.jpg");
+
+}
+
+
+<div class="row justify-content-center" m-3>
+    <div class="col-sm-8">
+        <div class="card">
+            <div class="card-header">
+                <h1> @Model.DishName </h1>
+            </div>
+
+            <div class="card-body text-center">
+                <img class="card-img-top" src="@photoPath" />
+
+                <h4> Dish Name : @Model.DishName </h4>
+                <h4> Category : @Model.Category </h4>
+                <h4> Description : @Model.Description </h4>
+            </div>
+
+            <div class="card-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
