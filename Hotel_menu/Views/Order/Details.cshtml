@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewData["Title"] = "Details";
+    var photoPath = ("~/images/" + (Model.Photo ?? "noimage.jpg"));
+}
+
+<div class="row justify-content-center" m-3>
+    <div class="col-sm-8">
+        <div class="card">
+            <div class="card-header">
+                <h1> @Model.DishName </h1>
+            </div>
+
+            <div class="card-body text-center">
+                <img class="card-img-top imageThumbnail " src="@photoPath" asp-append-version="true" />
+
+                <h4> Dish Name : @Model.DishName </h4>
+                <h4> Category : @Model.Category </h4>
+                <h4> Price : @Model.Price  </h4>
+                <h4> Description : @Model.Description </h4>
+            </div>
+
+            <div class="card-footer">
+                <a asp-controller="Order" asp-action="Index" class="btn btn-primary"> Back </a>
+                <a asp-controller="Order" asp-action="Item" class="btn btn-primary"> Order this item </a>
+            </div>
+        </div>
+    </div>
+</div>
+

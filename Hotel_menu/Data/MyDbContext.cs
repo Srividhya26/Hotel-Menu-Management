@@ -17,6 +17,7 @@ namespace Hotel_menu.Data
 
         public DbSet<ApplicationUser> users { get; set; }
         public DbSet<Menu> menus { get; set; }
+        public DbSet<Order> orders { get; set; }
     }
     
 }
