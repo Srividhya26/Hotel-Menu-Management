@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hotel_menu.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20210901145749_Menus")]
-    partial class Menus
+    [Migration("20210902081109_Menus1")]
+    partial class Menus1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

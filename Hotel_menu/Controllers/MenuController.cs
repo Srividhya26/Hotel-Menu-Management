@@ -1,6 +1,7 @@
 ﻿using Hotel_menu.Models;
 using Hotel_menu.Repository;
 using Hotel_menu.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -22,6 +23,8 @@ namespace Hotel_menu.Controllers
             _menu = menu;
             _hosting = hosting;
         }
+
+        [Authorize]
         public IActionResult Index()
         {
             var menus = _menu.GetAll();
@@ -30,9 +33,16 @@ namespace Hotel_menu.Controllers
             return View(menus);
         }
 
-        public IActionResult Details()
+        public IActionResult Details(int id)
         {
-            return View();
+            var item = _work.menus.Get(id);
+
+            if(item == null)
+            {
+                return NotFound();
+            }
+
+            return View(item);
         }
 
         public IActionResult Create()
@@ -64,7 +74,7 @@ namespace Hotel_menu.Controllers
 
                 _menu.Add(newMenu);
                 _work.save();
-                return RedirectToAction("Details", "Menu");
+                return RedirectToAction("Index", "Menu");
             }
 
             return View();

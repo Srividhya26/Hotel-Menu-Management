@@ -2,7 +2,7 @@
 
 namespace Hotel_menu.Migrations
 {
-    public partial class Menu : Migration
+    public partial class Menus1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
