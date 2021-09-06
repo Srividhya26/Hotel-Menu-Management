@@ -37,7 +37,8 @@ namespace Hotel_menu
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IMenuRepository, MenuRepository>();
-
+            services.AddScoped<IOrderRepository, OrderRepository>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

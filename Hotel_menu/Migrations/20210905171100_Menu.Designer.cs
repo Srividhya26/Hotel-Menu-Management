@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hotel_menu.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20210902081010_Menus")]
-    partial class Menus
+    [Migration("20210905171100_Menu")]
+    partial class Menu
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -106,13 +106,46 @@ namespace Hotel_menu.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("OrderId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Photo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("OrderId");
+
                     b.ToTable("menus");
+                });
+
+            modelBuilder.Entity("Hotel_menu.Models.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<double>("TotalCost")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("orders");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -246,6 +279,13 @@ namespace Hotel_menu.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Hotel_menu.Models.Menu", b =>
+                {
+                    b.HasOne("Hotel_menu.Models.Order", null)
+                        .WithMany("menus")
+                        .HasForeignKey("OrderId");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -295,6 +335,11 @@ namespace Hotel_menu.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Hotel_menu.Models.Order", b =>
+                {
+                    b.Navigation("menus");
                 });
 #pragma warning restore 612, 618
         }

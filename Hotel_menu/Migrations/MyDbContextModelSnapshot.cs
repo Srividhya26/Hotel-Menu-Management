@@ -123,7 +123,7 @@ namespace Hotel_menu.Migrations
 
             modelBuilder.Entity("Hotel_menu.Models.Order", b =>
                 {
-                    b.Property<int>("OrderId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -141,7 +141,7 @@ namespace Hotel_menu.Migrations
                     b.Property<double>("TotalCost")
                         .HasColumnType("float");
 
-                    b.HasKey("OrderId");
+                    b.HasKey("Id");
 
                     b.ToTable("orders");
                 });

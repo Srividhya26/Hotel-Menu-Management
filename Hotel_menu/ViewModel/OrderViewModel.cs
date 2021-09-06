@@ -8,7 +8,8 @@ namespace Hotel_menu.ViewModel
 {
     public class OrderViewModel
     {
+        public int Id { get; set; }
         public IEnumerable<Menu> Menu;
-        public IEnumerable<Order> Order;
+        public Order Order;
     }
 }

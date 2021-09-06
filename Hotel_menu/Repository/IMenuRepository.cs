@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hotel_menu.Repository
 {
-    public interface IMenuRepository : IRepository<Menu>
+    public interface IMenuRepository : IMenuRepository<Menu>
     {
         public void Update(Menu menu);
     }

@@ -1,4 +1,6 @@
-﻿using Hotel_menu.Repository;
+﻿using Hotel_menu.Models;
+using Hotel_menu.Repository;
+using Hotel_menu.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,18 +13,20 @@ namespace Hotel_menu.Controllers
     {
         private readonly IUnitOfWork _work;
         private readonly IMenuRepository _menu;
+        private readonly IOrderRepository _order;
 
-        public OrderController(IUnitOfWork work, IMenuRepository menu)
+        public OrderController(IUnitOfWork work, IMenuRepository menu,IOrderRepository order)
         {
             _work = work;
-            _menu = menu;           
+            _menu = menu;
+            _order = order;
         }
         public IActionResult Index()
         {
-            var menus = _menu.GetAll();
+            //var orders = _menu.GetAll();
             var test = _work.menus.GetAll();
 
-            return View(menus);
+            return View(test);
         }
 
         public IActionResult Details(int id)
@@ -39,6 +43,28 @@ namespace Hotel_menu.Controllers
 
         public IActionResult Item()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Item(Order order)
+        {
+            if (ModelState.IsValid)
+            {
+
+                //Order newOrder = new Order
+                //{
+                //    Name = order.Name,
+                //    PhoneNumber = order.PhoneNumber,
+                //    Quantity = order.Quantity
+
+                //};
+
+                _order.Add(order);
+                _work.save();
+                return RedirectToAction("Index", "Order");
+            }
+
             return View();
         }
     }

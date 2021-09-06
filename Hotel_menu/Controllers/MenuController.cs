@@ -27,10 +27,10 @@ namespace Hotel_menu.Controllers
         [Authorize]
         public IActionResult Index()
         {
-            var menus = _menu.GetAll();
+            //var menus = _menu.GetAll();
             var test = _work.menus.GetAll();
 
-            return View(menus);
+            return View(test);
         }
 
         public IActionResult Details(int id)

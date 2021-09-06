@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace Hotel_menu.Repository
 {
-    public interface IUnitOfWork : IDisposable
+    public interface IOrderRepository : IMenuRepository<Order>
     {
-        IMenuRepository<Menu> menus { get;}
-        IMenuRepository<Order> orders { get; } 
-        void save();
+
     }
 }

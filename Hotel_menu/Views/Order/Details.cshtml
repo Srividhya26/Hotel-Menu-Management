@@ -1,4 +1,5 @@
-﻿
+﻿@model Menu
+
 @{
     ViewData["Title"] = "Details";
     var photoPath = ("~/images/" + (Model.Photo ?? "noimage.jpg"));
@@ -19,6 +20,26 @@
                 <h4> Price : @Model.Price  </h4>
                 <h4> Description : @Model.Description </h4>
             </div>
+            @*<div class="form-group row">
+                <div class="col-6">
+                    <label asp-for="@Model.Order.Quantity"> Select Quantity </label>
+                    <select class="form-group form-control">
+                        <option> Select Quantity </option>
+                        <option> 1 </option>
+                        <option> 2 </option>
+                        <option> 3 </option>
+                        <option> 4 </option>
+                        <option> 5 </option>
+                        <option> 6 </option>
+                        <option> 7 </option>
+                        <option> 8 </option>
+                        <option> 9 </option>
+                        <option> 10 </option>
+                    </select>
+                </div>
+                <span asp-validation-for="@Model.Order.Quantity" class="text-danger"></span>
+            </div>*@
+
 
             <div class="card-footer">
                 <a asp-controller="Order" asp-action="Index" class="btn btn-primary"> Back </a>

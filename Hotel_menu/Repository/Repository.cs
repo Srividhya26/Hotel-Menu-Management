@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Hotel_menu.Repository
 {
-    public class Repository<T> : IRepository<T> where T:class
+    public class Repository<T> : IMenuRepository<T> where T :class
     {
         private readonly MyDbContext _db;
 

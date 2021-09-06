@@ -4,7 +4,7 @@
     ViewData["Title"] = "Item";
 }
 
-<div class="row">
+<div class="row"  method="post" asp-action="Item">
     <h3 class="text-center">
         Fill the details
     </h3>
@@ -51,10 +51,10 @@
 
         <div class="form-group row">
             <div class="col-4">
-                <button type="submit" class="btn btn-info w-50"> Place Order </button>
+                <button type="submit" class="btn btn-info w-50">place Order</button>
             </div>
             <div class="col-4">
-                <a asp-action="Index" class="btn btn-danger w-50"> Back </a>
+                <a asp-action="Index" class="btn btn-danger w-50"> Order More item </a>
             </div>
         </div>
     </div>
